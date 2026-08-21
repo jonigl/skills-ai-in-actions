@@ -3,20 +3,24 @@ on:
   workflow_dispatch:
 
 permissions:
-  models: read
+  contents: read
+  copilot-requests: write
 
 jobs:
   ask-ai:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
       - name: AI Inference
         id: ai-response
         uses: actions/ai-inference@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        with:          
           prompt: |
             Give me a programming joke.
+        env:
+          GITHUB_TOKEN: $
 
       - name: Display AI Response
         run: |
