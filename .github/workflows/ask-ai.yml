@@ -18,6 +18,6 @@ jobs:
         uses: actions/ai-inference@v3
         with:
           prompt: Summarize the latest changes in this repository.
-          model: gpt-4.1        
+          model: gpt-4.1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_GITHUB_TOKEN: ${{ github.token }}
