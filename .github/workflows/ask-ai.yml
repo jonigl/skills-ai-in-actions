@@ -7,23 +7,13 @@ permissions:
   copilot-requests: write
 
 jobs:
-  ask-ai:
+  copilot:
     runs-on: ubuntu-latest
-
     steps:
+      - uses: actions/checkout@v6
       - name: Install Copilot CLI
         run: npm install -g @github/copilot
-      - name: AI Inference
-        id: ai-response
-        uses: actions/ai-inference@v3
-        with:          
-          prompt: |
-            Give me a programming joke.
+      - name: Run Copilot
+        run: copilot --yolo -p "Summarize the changes in this commit"
         env:
           GITHUB_TOKEN: $
-
-      - name: Display AI Response
-        run: |
-          echo "## 🤖 AI Response" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "${{ steps.ai-response.outputs.response }}" >> $GITHUB_STEP_SUMMARY
