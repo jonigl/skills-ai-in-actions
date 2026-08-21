@@ -19,5 +19,4 @@ jobs:
         with:
           prompt: Summarize the latest changes in this repository.
           model: gpt-4.1
-        env:
-          COPILOT_GITHUB_TOKEN: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
